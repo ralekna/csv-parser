@@ -1,8 +1,5 @@
 const ENCLOSING_QUOTE = {value: `"`,    type: 'ENCLOSING_QUOTE'};
-const RECORD_QUOTE    = {value: `""`,   type: 'RECORD_QUOTE'};
 const RECORD_BRAKE    = {value: '\r\n', type: 'RECORD_BRAKE'};
-const STRING_BRAKE    = {value: '\r\n', type: 'STRING_BRAKE'};
-const COMMA = {value: ',', type: 'COMMA'};
 
 const CELL = (value) => ({value, type: 'CELL'});
 
@@ -21,6 +18,7 @@ function parse(csv) {
       store.rows.push(store.currentRow);
       store.currentRow = [];
     }
+
     if (index === array.length - 1) {
       store.rows.push(store.currentRow);
     }
@@ -97,10 +95,6 @@ class Tokenizer {
 
   hasNext() {
     return this.leftSource[1] !== undefined;
-  }
-
-  getNext() {
-    return this.leftSource[1];
   }
 
   getLeftSource() {
